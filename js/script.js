@@ -34,9 +34,9 @@ function changePage(element) {
     listTagElements[i].style.display = "none";
   }
   
-  var startingElement = (element.id - 1) * 10;    //get starting element
+  var startingElement = (element.id - 1) * maxItemsShown;    //get starting element
   
-  if (listTagElements.length - startingElement <= 10) {   //check number of elements left for last page
+  if (listTagElements.length - startingElement <= maxItemsShown) {   //check number of elements left for last page
     var max = listTagElements.length - startingElement;
   } else {
     var max = maxItemsShown;
