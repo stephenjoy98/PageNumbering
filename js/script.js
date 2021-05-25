@@ -1,10 +1,9 @@
 const maxItemsShown = 10;   //max items to be displayed
 var listTagElements = Array.from(document.querySelectorAll(".contact-item"));   //get all contact cards from the list
+var numberOfPages = Math.ceil(listTagElements.length / maxItemsShown);    //calculate number of pages
 
 
 function readUserData() {
-  var numberOfPages = Math.ceil(listTagElements.length / maxItemsShown);    //calculate number of pages
-  
   for (let i = maxItemsShown; i < listTagElements.length; i++) {    //hide all cards except first 10
     listTagElements[i].style.display = "none";
   }
@@ -25,6 +24,8 @@ function readUserData() {
     li.append(a);
     pagination.appendChild(li);
   }
+
+  document.getElementById("1").classList.add("active");
 }
 
 
@@ -40,11 +41,17 @@ function changePage(element) {
   } else {
     var max = maxItemsShown;
   }
-
+  
   for (let i = 0; i < max; i++) {   //show contacts
     listTagElements[startingElement].style.display = "block";
     startingElement++;
   }
+  
+  for (let i = 1; i <= numberOfPages; i++) {
+    document.getElementById(i).classList.remove("active");
+  }
+  
+  document.getElementById(element.id).classList.add("active");
 }
 
 readUserData();
